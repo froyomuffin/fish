@@ -15,7 +15,10 @@ check-cmd xclip ;and alias c='xclip -selection clipboard' ;and alias v='xclip -o
 check-cmd pbcopy ;and alias c='pbcopy'; check-cmd pbpaste ;and alias v='pbpaste'
 
 # Fix ctags in macOS
-check-cmd brew ;and alias ctags=(brew --prefix ctags)'/bin/ctags'
+check-cmd brew ;and check-cmd ctags ;and alias ctags=(brew --prefix ctags)'/bin/ctags'
+
+# Default tag
+check-cmd ctags ;and alias tag='ctags -R'
 
 # Neovim
 check-cmd nvim ;and alias vim='nvim'
