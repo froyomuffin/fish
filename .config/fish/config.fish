@@ -1,9 +1,13 @@
-set -x PATH ~/bin/ /git/toolbox/bin/ $PATH
+set -x PATH ~/bin/ ~/git/toolbox/bin/ $PATH
+set -x EDITOR nvim
 
 function check-cmd
     which $argv[1]
     return $status
 end
+
+# Vi!
+fish_vi_key_bindings
 
 # Linux applications
 check-cmd pulseaudio ;and test -z (pidof pulseaudio) ;and echo 'Starting pulseaudio' ;and pulseaudio --start
