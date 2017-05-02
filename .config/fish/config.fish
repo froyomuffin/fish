@@ -1,5 +1,4 @@
 set -x PATH ~/bin/ ~/git/toolbox/bin/ $PATH
-set -x EDITOR nvim
 
 function check-cmd
     which $argv[1]
@@ -7,10 +6,13 @@ function check-cmd
 end
 
 # Vi!
-fish_vi_key_bindings
+#fish_vi_key_bindings
+fish_default_key_bindings
+
+# Avoid duplicates in history
 
 # Linux applications
-check-cmd pulseaudio ;and test -z (pidof pulseaudio) ;and echo 'Starting pulseaudio' ;and pulseaudio --start
+#check-cmd pulseaudio ;and test -z (pidof pulseaudio) ;and echo 'Starting pulseaudio' ;and pulseaudio --start
 check-cmd startx ;and test -z $DISPLAY ;and test $XDG_VTNR -eq 1 ;and exec startx
 check-cmd xdg-open ;and alias open='xdg-open'
 
@@ -25,6 +27,11 @@ check-cmd brew ;and check-cmd ctags ;and alias ctags=(brew --prefix ctags)'/bin/
 check-cmd ctags ;and alias tag='ctags -R'
 
 # Neovim
+set -x EDITOR nvim
 check-cmd nvim ;and alias vim='nvim'
 
 source ~/.private.fish
+#status --is-login; and status --is-interactive; and exec byobu-launcher
+
+# Bindings break for some reason... Temporary fix
+fzf_key_bindings
