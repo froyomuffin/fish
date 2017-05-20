@@ -1,7 +1,7 @@
-set -x PATH ~/bin/ ~/git/toolbox/bin/ $PATH
+set -x PATH ~/bin/ ~/git/toolbox/bin/ ~/.gem/ruby/2.4.0/bin $PATH
 
 function check-cmd
-    which $argv[1]
+    which $argv[1] /dev/null 2> /dev/null
     return $status
 end
 
