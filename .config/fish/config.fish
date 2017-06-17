@@ -35,3 +35,9 @@ source ~/.private.fish
 
 # Bindings break for some reason... Temporary fix
 fzf_key_bindings
+
+# Share history between shells
+function sync_history --on-event fish_preexec
+  history --save
+  history --merge
+end
