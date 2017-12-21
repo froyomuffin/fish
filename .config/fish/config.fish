@@ -1,8 +1,12 @@
-set -x PATH ~/bin/ ~/git/toolbox/bin/ ~/.gem/ruby/2.4.0/bin $PATH
+set -x PATH ~/bin/ ~/git/toolbox/bin/ $PATH
 
 function check-cmd
-    which $argv[1] /dev/null 2> /dev/null
-    return $status
+    which $argv[1] > /dev/null
+    if [ $status ]
+      return 0
+    else
+      return 1
+    end
 end
 
 # Vi!
@@ -10,25 +14,29 @@ end
 fish_default_key_bindings
 
 # Avoid duplicates in history
+#set -g hist_ignore_dups
 
 # Linux applications
 #check-cmd pulseaudio ;and test -z (pidof pulseaudio) ;and echo 'Starting pulseaudio' ;and pulseaudio --start
-check-cmd startx ;and test -z $DISPLAY ;and test $XDG_VTNR -eq 1 ;and exec startx
-check-cmd xdg-open ;and alias open='xdg-open'
+check-cmd startx ;and [ $DISPLAY ] ;and test -z $DISPLAY ;and test $XDG_VTNR -eq 1 ;and exec startx
+check-cmd xdg-open ;and alias open 'xdg-open'
 
 # Set clipboard to c and v
-check-cmd xclip ;and alias c='xclip -selection clipboard' ;and alias v='xclip -o -selection clipboard'
-check-cmd pbcopy ;and alias c='pbcopy'; check-cmd pbpaste ;and alias v='pbpaste'
+check-cmd xclip ;and alias c 'xclip -selection clipboard' ;and alias v 'xclip -o -selection clipboard'
+check-cmd pbcopy ;and alias c 'pbcopy'; check-cmd pbpaste ;and alias v 'pbpaste'
 
 # Fix ctags in macOS
-check-cmd brew ;and check-cmd ctags ;and alias ctags=(brew --prefix ctags)'/bin/ctags'
+#check-cmd brew ;and check-cmd ctags ;and alias ctags (brew --prefix ctags)'/bin/ctags'
 
 # Default tag
-check-cmd ctags ;and alias tag='ctags -R'
+check-cmd ctags ;and alias tag 'ctags -R'
 
 # Neovim
 set -x EDITOR nvim
-check-cmd nvim ;and alias vim='nvim'
+check-cmd nvim ;and alias vim 'nvim'
+
+# Exa
+check-cmd exa ;and alias ls 'exa'
 
 source ~/.private.fish
 #status --is-login; and status --is-interactive; and exec byobu-launcher
