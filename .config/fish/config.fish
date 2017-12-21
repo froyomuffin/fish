@@ -38,6 +38,9 @@ check-cmd nvim ;and alias vim 'nvim'
 # Exa
 check-cmd exa ;and alias ls 'exa'
 
+# fd
+check-cmd fd ;and alias find 'fd'
+
 source ~/.private.fish
 #status --is-login; and status --is-interactive; and exec byobu-launcher
 
