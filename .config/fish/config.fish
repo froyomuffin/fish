@@ -16,7 +16,12 @@ function dir-exists
   invert $status
 end
 
-set -x PATH ~/bin/ ~/git/toolbox/bin/ $PATH
+function add-to-path
+  dir-exists $argv[1] ;and set -x PATH $argv[1] $PATH
+end
+
+add-to-path ~/bin/
+add-to-path ~/git/toolbox/bin/
 
 # Vi!
 #fish_vi_key_bindings
