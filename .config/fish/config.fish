@@ -8,12 +8,12 @@ end
 
 function function-exists
   which $argv[1] > /dev/null
-  invert $status
+  return $status
 end
 
 function dir-exists
   test -d $argv[1]
-  invert $status
+  return $status
 end
 
 function add-to-path
