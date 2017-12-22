@@ -16,8 +16,17 @@ function dir-exists
   return $status
 end
 
+function file-exists
+  test -e $argv[1]
+  return $status
+end
+
 function add-to-path
   dir-exists $argv[1] ;and set -x PATH $argv[1] $PATH
+end
+
+function safe-source
+  file-exists $argv[1] ;and source $argv[1]
 end
 
 add-to-path ~/bin/
@@ -55,7 +64,7 @@ function-exists exa ;and alias ls 'exa'
 # fd
 function-exists fd ;and alias find 'fd'
 
-source ~/.private.fish
+safe-source ~/.private.fish
 #status --is-login; and status --is-interactive; and exec byobu-launcher
 
 # Bindings break for some reason... Temporary fix
