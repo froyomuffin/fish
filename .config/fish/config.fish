@@ -32,6 +32,9 @@ end
 add-to-path ~/bin/
 add-to-path ~/git/toolbox/bin/
 
+# Disable welcome message
+set fish_greeting ""
+
 # Vi!
 #fish_vi_key_bindings
 fish_default_key_bindings
