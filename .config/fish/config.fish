@@ -67,6 +67,9 @@ function-exists exa ;and alias ls 'exa'
 # fd
 function-exists fd ;and alias find 'fd'
 
+# FZF with Rg
+function-exists rg ;and set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --smart-case --no-ignore --glob "!.git/*"'
+
 safe-source ~/.private.fish
 #status --is-login; and status --is-interactive; and exec byobu-launcher
 
