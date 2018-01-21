@@ -1,1 +1,1 @@
-/Users/tw/.local/share/omf/themes/default/fish_prompt.fish
+/Users/tw/.config/fisherman/default/fish_prompt.fish

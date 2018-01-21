@@ -29,8 +29,19 @@ function safe-source
   file-exists $argv[1] ;and source $argv[1]
 end
 
+function is-running
+  pgrep -f $argv[1] > /dev/null
+end
+
+function in-tmux
+  test -n "$TMUX"
+end
+
 add-to-path ~/bin/
 add-to-path ~/git/toolbox/bin/
+
+# Start byobu
+function-exists byobu ;and not in-tmux ;and byobu
 
 # Disable welcome message
 set fish_greeting ""
