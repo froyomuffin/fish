@@ -37,11 +37,14 @@ function in-tmux
   test -n "$TMUX"
 end
 
+function in-ssh-session
+  test -n "$SSH_CLIENT"
+end
 add-to-path ~/bin/
 add-to-path ~/git/toolbox/bin/
 
 # Start byobu
-function-exists byobu ;and not in-tmux ;and byobu
+function-exists byobu ;and not in-tmux ;and not in-ssh-session ;and byobu
 
 # Disable welcome message
 set fish_greeting ""
