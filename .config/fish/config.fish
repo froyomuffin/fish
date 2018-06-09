@@ -7,7 +7,7 @@ function invert
 end
 
 function function-exists
-  which $argv[1] > /dev/null
+  which $argv[1] > /dev/null 2> /dev/null
   return $status
 end
 
@@ -40,8 +40,9 @@ end
 function in-ssh-session
   test -n "$SSH_CLIENT"
 end
-add-to-path ~/bin/
-add-to-path ~/git/toolbox/bin/
+
+# Load private fish
+safe-source ~/.private.fish
 
 # Start byobu
 function-exists byobu ;and not in-tmux ;and not in-ssh-session ;and byobu
@@ -84,7 +85,6 @@ function-exists fd ;and alias find 'fd'
 # FZF with Rg
 function-exists rg ;and set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --smart-case --no-ignore --glob "!.git/*"'
 
-safe-source ~/.private.fish
 #status --is-login; and status --is-interactive; and exec byobu-launcher
 
 # Bindings break for some reason... Temporary fix
