@@ -44,9 +44,6 @@ end
 # Load private fish
 safe-source ~/.private.fish
 
-# Start byobu
-function-exists byobu ;and not in-tmux ;and not in-ssh-session ;and byobu
-
 # Disable welcome message
 set fish_greeting ""
 
@@ -58,16 +55,12 @@ fish_default_key_bindings
 #set -g hist_ignore_dups
 
 # Linux applications
-#function-exists pulseaudio ;and test -z (pidof pulseaudio) ;and echo 'Starting pulseaudio' ;and pulseaudio --start
 function-exists startx ;and [ $DISPLAY ] ;and test -z $DISPLAY ;and test $XDG_VTNR -eq 1 ;and exec startx
 function-exists xdg-open ;and alias open 'xdg-open'
 
 # Set clipboard to c and v
 function-exists xclip ;and alias c 'xclip -selection clipboard' ;and alias v 'xclip -o -selection clipboard'
 function-exists pbcopy ;and alias c 'pbcopy'; function-exists pbpaste ;and alias v 'pbpaste'
-
-# Fix ctags in macOS
-#function-exists brew ;and function-exists ctags ;and alias ctags (brew --prefix ctags)'/bin/ctags'
 
 # Default tag
 function-exists ctags ;and alias tag 'ctags -R'
@@ -84,8 +77,6 @@ function-exists fd ;and alias find 'fd'
 
 # FZF with Rg
 function-exists rg ;and set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --smart-case --no-ignore --glob "!.git/*"'
-
-#status --is-login; and status --is-interactive; and exec byobu-launcher
 
 # Bindings break for some reason... Temporary fix
 fzf_key_bindings
