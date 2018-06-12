@@ -86,3 +86,9 @@ function sync_history --on-event fish_preexec
   history --save
   history --merge
 end
+
+if test -f /opt/dev/dev.fish
+  source /opt/dev/dev.fish
+end
+
+set -g fish_user_paths "/usr/local/opt/imagemagick@6/bin" $fish_user_paths
