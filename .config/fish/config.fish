@@ -26,7 +26,7 @@ function add-to-path
 end
 
 function safe-source
-  file-exists $argv[1] ;and source $argv[1]
+  file-exists $argv[1] ;and . $argv[1]
 end
 
 function is-running
@@ -39,6 +39,11 @@ end
 
 function in-ssh-session
   test -n "$SSH_CLIENT"
+end
+
+function set-upstream
+  set -l branch_name (git rev-parse --abbrev-ref HEAD)
+  git push --set-upstream origin $branch_name
 end
 
 # Load private fish
