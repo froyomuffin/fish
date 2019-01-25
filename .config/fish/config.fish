@@ -80,7 +80,7 @@ function-exists exa ;and alias ls 'exa'
 # fd
 function-exists fd ;and alias find 'fd'
 
-# FZF with Rg
+# FZF File Search with Rg
 function-exists rg ;and set -x FZF_DEFAULT_COMMAND 'rg --files --hidden --smart-case --no-ignore --glob "!.git/*"'
 
 # Bindings break for some reason... Temporary fix
