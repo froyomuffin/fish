@@ -77,6 +77,9 @@ function-exists nvim ;and alias vim 'nvim'
 # Exa
 function-exists exa ;and alias ls 'exa'
 
+# ~/bin
+add-to-path ~/bin
+
 # fd
 function-exists fd ;and alias find 'fd'
 
