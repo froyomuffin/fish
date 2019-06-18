@@ -46,6 +46,37 @@ function set-upstream
   git push --set-upstream origin $branch_name
 end
 
+function reset_colors
+  set -Ux fish_color_autosuggestion 555\x1ebrblack
+  set -Ux fish_color_cancel \x2dr
+  set -Ux fish_color_command \x2d\x2dbold
+  set -Ux fish_color_comment red
+  set -Ux fish_color_cwd green
+  set -Ux fish_color_cwd_root red
+  set -Ux fish_color_end brmagenta
+  set -Ux fish_color_error brred
+  set -Ux fish_color_escape bryellow\x1e\x2d\x2dbold
+  set -Ux fish_color_history_current \x2d\x2dbold
+  set -Ux fish_color_host normal
+  set -Ux fish_color_match \x2d\x2dbackground\x3dbrblue
+  set -Ux fish_color_normal normal
+  set -Ux fish_color_operator bryellow
+  set -Ux fish_color_param cyan
+  set -Ux fish_color_quote yellow
+  set -Ux fish_color_redirection brblue
+  set -Ux fish_color_search_match bryellow\x1e\x2d\x2dbackground\x3dbrblack
+  set -Ux fish_color_selection white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrblack
+  set -Ux fish_color_user brgreen
+  set -Ux fish_color_valid_path \x2d\x2dunderline
+  set -Ux fish_pager_color_completion \x1d
+  set -Ux fish_pager_color_description B3A06D\x1eyellow
+  set -Ux fish_pager_color_prefix white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
+  set -Ux fish_pager_color_progress brwhite\x1e\x2d\x2dbackground\x3dcyan
+  set -Ux fish_user_paths /usr/local/opt/fzf/bin
+  set -Ux fisher_active_prompt default
+  set -Ux fisher_dependency_count getopts\x1ez\x1evcs\x1edefault
+end
+
 # Load private fish
 safe-source ~/.private.fish
 
@@ -98,3 +129,6 @@ end
 if test -f /opt/dev/dev.fish
   source /opt/dev/dev.fish
 end
+
+# Reload default colors
+reset_colors
