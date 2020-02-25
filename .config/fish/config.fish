@@ -77,6 +77,39 @@ function reset_colors
   set -Ux fisher_dependency_count getopts\x1ez\x1evcs\x1edefault
 end
 
+function goto
+  set LOC $argv[1]
+  count $LOC > /dev/null ;and test -d $LOC ;and set -U GOTO $LOC
+  test -d $GOTO ;and cd $GOTO
+end
+
+function set-goto
+  echo "Setting goto directory to '$PWD'"
+  goto $PWD
+end
+
+set LOCKFILE ~/.config/.goto_lock
+
+function lock
+  set-goto
+
+  touch $LOCKFILE
+  echo "Locked default directory to '$GOTO'"
+end
+
+function unlock
+  if test -e $LOCKFILE
+    rm $LOCKFILE
+  end
+  echo "Unlocked default directory ($PWD)"
+end
+
+function handle-default-location
+  if test -e $LOCKFILE
+    goto
+  end
+end
+
 # Load private fish
 safe-source ~/.private.fish
 
@@ -88,7 +121,7 @@ set fish_greeting ""
 fish_default_key_bindings
 
 # Avoid duplicates in history
-#set -g hist_ignore_dups
+set -g hist_ignore_dups
 
 # Linux applications
 function-exists startx ;and [ $DISPLAY ] ;and test -z $DISPLAY ;and test $XDG_VTNR -eq 1 ;and exec startx
@@ -108,8 +141,14 @@ function-exists nvim ;and alias vim 'nvim'
 # Exa
 function-exists exa ;and alias ls 'exa'
 
+# fd
+function-exists fd ;and alias find 'fd'
+
 # ~/bin
 add-to-path ~/bin
+
+# Cargo
+add-to-path ~/.cargo/bin
 
 # fd
 function-exists fd ;and alias find 'fd'
