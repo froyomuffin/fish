@@ -88,6 +88,9 @@ function set-goto
   goto $PWD
 end
 
+alias here=set-goto
+alias home=set-goto
+
 set LOCKFILE ~/.config/.goto_lock
 
 function lock
