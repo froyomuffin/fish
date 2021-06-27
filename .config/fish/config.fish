@@ -174,3 +174,8 @@ end
 
 # Reload default colors
 reset_colors
+
+# Tmux helper
+function tm
+  tmux a || tmux
+end
